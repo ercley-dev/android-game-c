@@ -1,4 +1,5 @@
 #include "SDL.h"
+#include "include/touch_screen.h"
 #include "include/plataforma.h"
 #include <stdio.h>
 
@@ -54,6 +55,8 @@ int main (int argc, char *argv[]) {
 
         SDL_RenderPresent(renderer);
     }
+
+    touch();
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
