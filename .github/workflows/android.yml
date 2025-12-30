@@ -1,0 +1,25 @@
+name: Android Build
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: set up JDK 17
+        uses: action/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK/NDK
+        uses: android-action/setup-android@v3
+      - name: Build Native Binaries
+        run: |
+          $ANDROID_HOME/ndk-bundle/ndk-build NDK_PROJECT_PATH=.
+          APP_BUILD_SCRIPT=jni/Android.mk
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-libs
+          path: libs/
