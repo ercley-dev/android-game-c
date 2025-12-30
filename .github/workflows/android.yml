@@ -49,3 +49,4 @@ jobs:
         with:
             name: jogo-debug-apk
             path: "**/build/outputs/apk/debug/*.apk"
+            retention-days: 1
