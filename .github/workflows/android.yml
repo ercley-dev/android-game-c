@@ -48,4 +48,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
             name: jogo-debug-apk
-            path: app/build/outputs/apks/debug/app-debug.apk
+            path: build/outputs/apks/debug/*.apk
