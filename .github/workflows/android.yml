@@ -18,8 +18,10 @@ jobs:
       - name: Setup Android SDK/NDK
         uses: android-actions/setup-android@v3
 
-      - name: Install NDK
-        run: sdkmanager "ndk-bundle"
+      - name: Accept Licenses and Install NDK
+        run: |
+          yes | sdkmanager --licenses
+          sdkmanager "ndk-bundle" "platform-tools" "platforms;android-28"
         
       - name: Build Native Binaries with NDK
         run: |
