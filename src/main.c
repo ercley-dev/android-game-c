@@ -54,9 +54,9 @@ int main (int argc, char *argv[]) {
         SDL_RenderFillRect(renderer, &rect);
 
         SDL_RenderPresent(renderer);
-    }
 
-    touch();
+        touch();;
+    }
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

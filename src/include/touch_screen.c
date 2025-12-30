@@ -1,5 +1,4 @@
 #include "touch_screen.h"
-#include "SDL.h"
 #include "SDL_log.h"
 
 

@@ -7,7 +7,8 @@ LOCAL_MODULE := main
 # Busca os headers da SDL2
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../SDL2/include
 
-LOCAL_SRC_FILES := ../src/main.c
+LOCAL_SRC_FILES := ../src/main.c \
+                   ../src/include/touch_screen.c
 
 # Forma correta de linkar a SDL2 no Android
 LOCAL_SHARED_LIBRARIES := SDL2

@@ -2,10 +2,9 @@
 #define TOUCH_SCREEN_H
 
 #include "SDL.h"
-#include "SDL_log.h"
 
-SDL_Event e;
-float touchX, touchY;
+extern SDL_Event e;
+extern float touchX, touchY;
 
 int touch ();
 
