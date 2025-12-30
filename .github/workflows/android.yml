@@ -24,11 +24,11 @@ jobs:
 
       - name: Download SDL2 Source
         run: |
-          # Baixa a versão estável da SDL2 para Android
           curl -L https://www.libsdl.org/release/SDL2-2.30.9.tar.gz -o sdl2.tar.gz
           tar -xzf sdl2.tar.gz
-          # Renomeia a pasta para apenas 'SDL2' para o NDK encontrar fácil
           mv SDL2-2.30.9 SDL2
+          mkdir -p app/src/main/java/org/libsdl/app
+          cp SDL2/android-project/app/src/main/java/org/libsdl/app/*.java app/src/main/java/org/libsdl/app/
 
       - name: Build Native Binaries
         run: |
