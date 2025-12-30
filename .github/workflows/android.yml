@@ -19,22 +19,24 @@ jobs:
 
       - name: Accept Licenses and Install NDK
         run: |
-          # Aceita todas as licenças pendentes do Google
           yes | sdkmanager --licenses
-          # Instala a versão estável do NDK e as ferramentas necessárias
           sdkmanager "ndk-bundle" "platform-tools" "platforms;android-28"
+
+      - name: Download SDL2 Source
+        run: |
+          # Baixa a versão estável da SDL2 para Android
+          curl -L https://www.libsdl.org/release/SDL2-2.30.9.tar.gz -o sdl2.tar.gz
+          tar -xzf sdl2.tar.gz
+          # Renomeia a pasta para apenas 'SDL2' para o NDK encontrar fácil
+          mv SDL2-2.30.9 SDL2
 
       - name: Build Native Binaries
         run: |
-          # Usamos o caminho absoluto do ANDROID_HOME para evitar erros de comando não encontrado
+          # Definimos o NDK_MODULE_PATH apontando para a pasta onde baixamos a SDL2
           $ANDROID_HOME/ndk-bundle/ndk-build \
             NDK_PROJECT_PATH=. \
             APP_BUILD_SCRIPT=jni/Android.mk \
             NDK_APPLICATION_MK=jni/Application.mk \
+            NDK_MODULE_PATH=./ \
             APP_PLATFORM=android-28
 
-      - name: Upload Native Libs
-        uses: actions/upload-artifact@v4
-        with:
-          name: bibliotecas-compiladas
-          path: libs/
