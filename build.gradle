@@ -1,0 +1,40 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+       classpath 'com.android.tools.build:gradle:8.2.0'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.application'
+
+android {
+    namespace "com.example.sdl'
+    compileSdk 34
+
+    defaultConfig {
+	applicationId "com.example.sdl"
+	minSdk 21
+	targetSdk 34
+	versionCode 1
+	versionName "1.0"
+    }
+
+    sourceSets {
+	main {
+	     mainifest.srcFile 'app/src/main/AndroidManifest.xml'
+	     java.srcDirs = ['app/src/main/java', 'SDL2/android-project/app/src/main/java']
+	     res.srcDirs = ['app/src/main/res']
+	     jniLibs.srcDirs = ['libs']
+	}
+    }
+}

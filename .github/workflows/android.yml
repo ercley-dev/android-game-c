@@ -39,4 +39,13 @@ jobs:
             NDK_APPLICATION_MK=jni/Application.mk \
             NDK_MODULE_PATH=./ \
             APP_PLATFORM=android-28
+            
+      - name: Build APK
+        run: |
+          gradle assembleDebug
 
+      - name: Upload Apk
+        uses: actions/upload-artifact@v4
+        with:
+            name: jogo-debug-apk
+            path: app/build/outputs/apks/debug/app-debug.apk
