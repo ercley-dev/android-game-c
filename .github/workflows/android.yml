@@ -5,21 +5,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: action/checkout@v4
+        
       - name: set up JDK 17
-        uses: action/setup-java@v3
+        uses: action/setup-java@v4
+
         with:
           java-version: '17'
           distribution: 'temurin'
 
       - name: Setup Android SDK/NDK
         uses: android-action/setup-android@v3
-      - name: Build Native Binaries
+
+      - name: Install NDK
+        run: sdkmanager "ndk-bundle"
+        
+      - name: Build Native Binaries with NDK
         run: |
-          $ANDROID_HOME/ndk-bundle/ndk-build NDK_PROJECT_PATH=.
-          APP_BUILD_SCRIPT=jni/Android.mk
+          $ANDROID_HOME/ndk-bundle/ndk-build \
+          NDK_PROJECT_PATH=. \
+          APP_BUILD_SCRIPT=jni/Android.mk \
+          APP_ABI="armeabi-v7a arm64-v8a" \
+          APP_PLATFORM=android-28
+          
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: native-libs
+          name: native-libs-api28
           path: libs/
