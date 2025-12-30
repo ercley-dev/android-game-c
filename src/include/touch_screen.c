@@ -1,6 +1,8 @@
 #include "touch_screen.h"
 #include "SDL_log.h"
 
+SDL_Event e;
+float touchX, touchY;
 
 int touch() {
     while (SDL_PollEvent(&e)) {
@@ -26,4 +28,6 @@ int touch() {
                break;
         }
     }
+
+    return 0;
 }

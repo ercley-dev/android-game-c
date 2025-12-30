@@ -41,9 +41,9 @@ int main (int argc, char *argv[]) {
     SDL_Event event;
 
     while (running) {
-        while (SDL_PollEvent(&event)) {
+  //      while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) running = 0;
-        }
+  //      }
 
         SDL_SetRenderDrawColor(renderer, 20, 20, 40, 255);
         SDL_RenderClear(renderer);
